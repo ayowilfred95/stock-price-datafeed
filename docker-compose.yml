@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - backend_data:/app/data
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - frontend_data:/app/data
+
+volumes:
+  backend_data:
+  frontend_data:
+
+
+
+
