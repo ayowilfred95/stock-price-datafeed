@@ -1,23 +1,3 @@
-################################################################################
-#
-#  Permission is hereby granted, free of charge, to any person obtaining a
-#  copy of this software and associated documentation files (the "Software"),
-#  to deal in the Software without restriction, including without limitation
-#  the rights to use, copy, modify, merge, publish, distribute, sublicense,
-#  and/or sell copies of the Software, and to permit persons to whom the
-#  Software is furnished to do so, subject to the following conditions:
-#
-#  The above copyright notice and this permission notice shall be included in
-#  all copies or substantial portions of the Software.
-#
-#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-#  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-#  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-#  DEALINGS IN THE SOFTWARE.
-
 #from itertools import izip
 from random    import normalvariate, random
 from datetime  import timedelta, datetime
@@ -79,7 +59,7 @@ def orders(hist):
         a series of market conditions.
     """
     for t, px, spd in hist:
-        stock = 'ABC' if random() > 0.5 else 'DEF'
+        stock = 'APRL' if random() > 0.5 else 'GOOG'
         side, d  = ('sell', 2) if random() > 0.5 else ('buy', -2)
         order = round(normalvariate(px + (spd / d), spd / OVERLAP), 2)
         size  = int(abs(normalvariate(0, 100)))
@@ -238,8 +218,8 @@ class App(object):
     def __init__(self):
         self._book_1    = dict()
         self._book_2    = dict()
-        self._data_1    = order_book(read_csv(), self._book_1, 'ABC')
-        self._data_2    = order_book(read_csv(), self._book_2, 'DEF')
+        self._data_1    = order_book(read_csv(), self._book_1, 'APRL')
+        self._data_2    = order_book(read_csv(), self._book_2, 'GOOG')
         self._rt_start = datetime.now()
         self._sim_start, _, _  = next(self._data_1)
         self.read_10_first_lines()
@@ -284,7 +264,7 @@ class App(object):
         print ('Query received @ t%s' % t)
         return [{
             'id': x and x.get('id', None),
-            'stock': 'ABC',
+            'stock': 'APRL',
             'timestamp': str(t),
             'top_bid': bids1 and {
                 'price': bids1[0][0],
@@ -297,7 +277,7 @@ class App(object):
         },
         {
             'id': x and x.get('id', None),
-            'stock': 'DEF',
+            'stock': 'GOOG',
             'timestamp': str(t),
             'top_bid': bids2 and {
                 'price': bids2[0][0],

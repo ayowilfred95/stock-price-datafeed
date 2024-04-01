@@ -37,7 +37,7 @@ To kickstart this project locally, follow these steps:
    python server3.py
    ```
 
-6. Next, navigate back to the root folder and then into the `frontend` folder to start the frontend/client-side application.
+6. Next, navigate back to the root folder and then into the `frontend` folder to start the frontend application.
 
 7. Run the following command to install the dependencies:
 
